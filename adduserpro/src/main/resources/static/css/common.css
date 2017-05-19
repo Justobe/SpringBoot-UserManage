@@ -1,0 +1,62 @@
+body{
+    margin: 0;
+}
+.black{
+    background-color: black;
+    opacity: 0;
+}
+#father-box{
+    position: relative;
+}
+#top-down{
+    background-color: white;
+    position: absolute;
+    bottom: 0;
+}
+#rabbit-head-box{
+    position: absolute;
+    overflow: hidden;
+}
+#rabbit-head{
+
+}
+#rabbit-head-img{
+
+}
+#lineBox{
+    overflow: hidden;
+    height: 2px;
+    width: 100%;
+}
+#line{
+    background-color: black;
+    height: 2px;
+    width: 100%;
+    margin-left: -100%;
+}
+#father-box2{
+    position: relative;
+}
+#down-top{
+    position: absolute;
+}
+#hatDown{
+    position: absolute;
+    background-color: black;
+}
+#hatLeft{
+    position: absolute;
+    background-color: black;
+}
+#hatRight{
+    position: absolute;
+    background-color: black;
+}
+#teamname{
+    position: absolute;
+    opacity: 0;
+}
+
+h1, h2, h3, h4, h5, h6{
+    text-align: center;
+}

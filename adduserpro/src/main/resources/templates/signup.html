@@ -1,0 +1,56 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="shortcut icon" href="images/favicon.ico" />
+    <link rel="bookmark" href="images/favicon.ico" />
+    <title>注册</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+
+<h1 style="text-align: center">用户注册</h1>
+<br/><br/>
+<div class="container">
+    <form th:action="@{/create}" th:object="${user}" method="get" th:method="get">
+
+        <div class="input-group">
+            <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span> </div>
+            <input type="text" id="email" name="email" class="form-control" th:text="${user.email}" placeholder="邮箱"/>
+
+        </div>
+        <br/>
+        <div class="input-group">
+            <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span> </div>
+            <input type="text" id="username" name="username" class="form-control" th:text="${user.username}" placeholder="用户名"/>
+        </div>
+        <br/>
+        <div class="input-group">
+            <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span> </div>
+            <input type="password" id="password" name="password" class="form-control" th:text="${user.password}" placeholder="密 码"/>
+        </div>
+        <br/>
+        <input type="submit" class="form-control btn btn-success" value="注 册"/>
+    </form>
+
+    <br/>
+    <p style="text-align: left" id="hint">已注册？<a href="/login">快去登录</a><br/><br/></p>
+</div>
+
+
+
+
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script>
+    /*$('username').blur(function () {
+        var username = $('#username').val();
+        $.get("/findByName",username,function () {
+            
+        })
+    })*/
+</script>
+</body>
+</html>

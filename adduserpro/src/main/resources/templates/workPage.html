@@ -1,0 +1,171 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+<head>
+    <link rel="shortcut icon" href="/images/favicon.ico"/>
+    <link rel="bookmark" href="/images/favicon.ico"/>
+    <title>管理 </title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <!--<link href="/css/sweetalert.min.css" rel="stylesheet" type="text/css"/>-->
+    <link href="/css/semantic.min.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top"
+     style="background-color: #f6f6f6; border: none;box-shadow: 0px 2px 8px 0px rgba(50,50,50,0.25);" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="">
+                <img alt="网站Logo" src="/images/logo.png" style="margin-top: -10px; width: 35px"/>
+            </a>
+            <a class="navbar-brand" href="">
+                系统管理界面
+            </a>
+        </div>
+
+        <div class="ui inline dropdown navbar-right" style="line-height: 50px">
+            <div class="text" >
+                <img class="ui avatar image" src="/images/avatar/default.png"/>
+                <p th:text=" ${user.username}"></p>
+            </div>
+            <i class="dropdown icon"></i>
+            <div class="menu">
+                <div class="item" style="color: black"><a href="/logout"><span
+                        class="glyphicon glyphicon-log-out"></span> &nbsp;退出登录</a></div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid" style="margin-top: 70px ;text-align: left" >
+        <!--<h3 sec:authorize="hasRole('ROLE_USER')">
+            普通用户
+        </h3>
+        <h3 sec:authorize ="hasRole('ROLE_ADMIN')">
+            管理员
+        </h3>-->
+</div>
+
+
+<div class="container-fluid">
+    <div class="row" style="">
+        <div class="col-xs-3">
+            <ul class="nav nav-pills nav-stacked">
+                <li class="active" id="personal_information_refresh"><a href="">个人信息 </a></li>
+                    <li sec:authorize ="hasRole('ROLE_ADMIN')"><a data-toggle="tab" href="#users_information">用户信息 </a></li>
+                    <li sec:authorize ="hasRole('ROLE_USER')"><a data-toggle="tab" href="#users_information">用户信息 </a></li>
+                    <li sec:authorize ="hasRole('ROLE_ADMIN')"><a data-toggle="tab" href="#users_manage">用户管理 </a></li>
+            </ul>
+        </div>
+
+        <div class="col-xs-9 tab-content">
+            <div class="tab-pane fade active in" id="personal_information">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h3>个人信息</h3></div>
+                    <div class="panel-body">
+                        <div class="alert alert-info" role="alert" th:text="'Email: '+${user.email}"></div>
+                        <div class="alert alert-success" role="alert" th:text="'Username: ' + ${user.username}"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="users_information" style="padding-left: 10px;">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h3>用户类型</h3></div>
+                    <div class="panel-body">
+                        <div class="alert alert-success" role="alert" sec:authorize ="hasRole('ROLE_ADMIN')">用户类型: 管理员</div>
+                        <div class="alert alert-success" role="alert" sec:authorize ="hasRole('ROLE_USER')">用户类型: 普通用户</div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="users_manage">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h3>用户管理</h3></div>
+                    <div class="panel-body">
+                        <h1 style="text-align: center">用户注册</h1>
+                        <br/><br/>
+                        <div class="container">
+                            <form >
+                                <div class="input-group">
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span> </div>
+                                    <input type="text" id="email" name="email" class="form-control"  placeholder="邮箱"/>
+
+                                </div>
+                                <br/>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span> </div>
+                                    <input type="text" id="username" name="username" class="form-control"  placeholder="用户名"/>
+
+                                </div>
+                                <br/>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span> </div>
+                                    <input type="password" id="password" name="password" class="form-control"  placeholder="密 码"/>
+                                </div>
+                                <br/>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-th-list"></span> </div>
+
+                                    <select class="form-control" style="width: 300px;" id="role_select">
+                                        <option value="role_user">普通用户</option>
+                                        <option value="role_admin">管理员</option>
+                                        </select>
+                                </div>
+                                <br/>
+                                <button id="register" class="form-control btn btn-success" onclick="clickReg()">注册</button>
+                            </form >
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/sweetalert.min.js"></script>
+<script src="/js/semantic.min.js"></script>
+<script>
+
+
+    $('.ui.dropdown')
+        .dropdown({
+            on: 'hover',
+
+        });
+  function clickReg() {
+      alert("nihao");
+      var regName = $('#username').val();
+      //var regName = "123";
+      var regPwd = $('#password').val();
+      var regEml = $('#email').val();
+      var regRole = $('#role_select>option:selected').attr("value");
+      var regInfo = {
+          regName: regName,
+          regPwd: regPwd,
+          regEml: regEml,
+          regRole: regRole
+
+      };
+      alert(regRole + regName + regPwd + regEml);
+
+      $.get("/regByAdmin", regInfo, function (data, status) {
+          if(data == "right"){
+             sweetAlert("注册成功");
+          }else
+          {
+              sweetAlert("注册失败");
+          }
+      }
+      )
+  }
+</script>
+</body>
+</html>
