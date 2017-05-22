@@ -3,6 +3,7 @@ package com.adc.gim.controllers;
 import com.adc.gim.models.Role;
 import com.adc.gim.models.User;
 import com.adc.gim.dao.UserDao;
+import com.adc.gim.service.UserDaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,7 +24,7 @@ import java.util.List;
 public class MainController {
 
     @Autowired
-    private UserDao userDao;
+    private UserDaoService userDaoService;
 
     private List<Role> createUserRole(){
         List<Role> tmpList =  new ArrayList<Role>();
@@ -85,7 +86,7 @@ public class MainController {
             System.out.print(user.getUsername() + user.getEmail()+user.getPassword());
             List<Role> tmpList =  createUserRole();
             user.setRoles(tmpList);
-            userDao.save(user);
+            userDaoService.save(user);
             //model.setViewName("registerOK");
             model.setViewName("signin");
             model.addObject(user);
@@ -107,7 +108,7 @@ public class MainController {
 
         String curName = userDetails.getUsername();
         //System.out.println(curName);
-        User user = userDao.findByUsername(curName);
+        User user = userDaoService.findByUsername(curName);
         if(user == null){
             model.setViewName("failPage");
         }else {
@@ -152,7 +153,7 @@ public class MainController {
            newUser.setRoles(tmpList);
        }
        try {
-           userDao.save(newUser);
+           userDaoService.save(newUser);
            res = "right";
        }catch (Exception ex){
 
